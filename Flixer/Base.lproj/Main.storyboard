@@ -95,6 +95,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="QH8-R4-l6n">
+                                    <rect key="frame" x="0.0" y="-44" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionCell" id="JRu-hd-RzE" customClass="MovieCollectionCell">
                                         <rect key="frame" x="0.0" y="0.0" width="116" height="182"/>
@@ -112,6 +116,7 @@
                                         <size key="customSize" width="116" height="182"/>
                                         <connections>
                                             <outlet property="posterView" destination="ePN-8q-8rQ" id="YKF-qx-jFd"/>
+                                            <segue destination="IwP-33-D0F" kind="show" id="OYE-QL-PJt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -122,6 +127,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Categories" id="nqh-NX-CxQ"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="QH8-R4-l6n" id="dQ3-Za-ieX"/>
                         <outlet property="collectionView" destination="Pqw-ky-uhA" id="eQP-vW-bMI"/>
                     </connections>
                 </viewController>
@@ -163,6 +169,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ecq-gN-ZBU">
+                                        <rect key="frame" x="0.0" y="-44" width="375" height="229"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="nE7-xO-Ah5"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="YTh-FU-MVl"/>
@@ -238,4 +248,7 @@
             <point key="canvasLocation" x="109.59999999999999" y="142.57871064467767"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PFq-eP-p6d"/>
+    </inferredMetricsTieBreakers>
 </document>
