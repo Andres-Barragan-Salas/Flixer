@@ -8,6 +8,7 @@
 
 #import "MoviesViewController.h"
 #import "MovieCell.h"
+#import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -27,6 +29,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self.activityIndicator startAnimating];
     [self fetchMovies];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -41,6 +44,20 @@
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                if (error != nil) {
                    NSLog(@"%@", [error localizedDescription]);
+                   
+                   //Error while fetching content
+                   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
+                          message:@"Please check your Internet connection."
+                   preferredStyle:(UIAlertControllerStyleAlert)];
+                   
+                   UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                                      style:UIAlertActionStyleDefault
+                                                                    handler:^(UIAlertAction * _Nonnull action) {
+                                                                            [self fetchMovies];
+                                                                    }];
+                   [alert addAction:tryAgainAction];
+                   
+                   [self presentViewController:alert animated:YES completion:^{}];
                }
                else {
                    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -56,6 +73,7 @@
                    // TODO: Reload your table view data
                }
             
+            [self.activityIndicator stopAnimating];
             [self.refreshControl endRefreshing];
            }];
         [task resume];
@@ -84,14 +102,21 @@
     return cell; 
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+    NSDictionary *movie = self.movies[indexPath.row];
+    
+    DetailsViewController *detailsViewController = [segue destinationViewController];
+    detailsViewController.movie = movie; 
 }
-*/
+
 
 @end
