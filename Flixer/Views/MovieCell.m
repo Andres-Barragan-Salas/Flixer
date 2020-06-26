@@ -19,6 +19,9 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = UIColor.systemGray6Color;
+    self.selectedBackgroundView = backgroundView;
 }
 
 @end

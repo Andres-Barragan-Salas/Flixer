@@ -90,6 +90,7 @@
     NSDictionary *movie = self.filteredMovies[indexPath.row];
     cell.titleLable.text = movie[@"title"];
     cell.synopsisLable.text = movie[@"overview"];
+
     
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
     NSString *posterURLString = movie[@"poster_path"];
@@ -97,7 +98,7 @@
     
     NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
     NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
-    cell.posterView.image = nil; //clearing the previous image before loading a new one
+    cell.posterView.image = [UIImage imageNamed:@"posterPlaceHolder"]; //clearing the previous image before loading a new one (with a place holder)
     [cell.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         if (imageResponse) {

@@ -94,7 +94,7 @@
     
     NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
     NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
-    cell.posterView.image = nil; //clearing the previous image before loading a new one
+    cell.posterView.image = [UIImage imageNamed:@"posterPlaceHolder"];
     [cell.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         if (imageResponse) {
@@ -121,7 +121,13 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UICollectionViewCell *tappedCell = sender;
+    MovieCollectionCell *tappedCell = sender;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        tappedCell.posterView.alpha = 0.5;
+        tappedCell.posterView.alpha = 1.0;
+    }];
+    
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
     NSDictionary *movie = self.movies[indexPath.item];
     
