@@ -211,7 +211,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="109.59999999999999" y="1644.8275862068967"/>
+            <point key="canvasLocation" x="545" y="1660"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="5Zf-dc-Yl7">
@@ -254,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8jv-CK-EIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109.59999999999999" y="2367.1664167916042"/>
+            <point key="canvasLocation" x="545" y="2383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Qo-Vy-TPa">
@@ -272,7 +272,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqO-yy-PRS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="-630"/>
+            <point key="canvasLocation" x="546" y="-629"/>
         </scene>
         <!--Category-->
         <scene sceneID="CO0-ff-N5R">
@@ -312,7 +312,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PFq-eP-p6d"/>
+        <segue reference="OYE-QL-PJt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="play.circle" catalog="system" width="128" height="121"/>

@@ -30,13 +30,43 @@
     NSString *fullposterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
-    [self.posterView setImageWithURL:posterURL];
+    NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
+    [self.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
+    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+        if (imageResponse) {
+            self.posterView.alpha = 0.0;
+            self.posterView.image = image;
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                self.posterView.alpha = 1.0;
+            }];
+        }
+        else {
+            self.posterView.image = image;
+        }
+    }
+    failure:NULL];
     
     NSString *backdropURLString = self.movie[@"backdrop_path"];
     NSString *fullbackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
     
     NSURL *backdropURL = [NSURL URLWithString:fullbackdropURLString];
-    [self.backdropView setImageWithURL:backdropURL];
+    NSURLRequest *backdropRequest = [NSURLRequest requestWithURL:backdropURL];
+    [self.backdropView setImageWithURLRequest:backdropRequest placeholderImage:nil
+    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+        if (imageResponse) {
+            self.backdropView.alpha = 0.0;
+            self.backdropView.image = image;
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backdropView.alpha = 1.0;
+            }];
+        }
+        else {
+            self.backdropView.image = image;
+        }
+    }
+    failure:NULL];
     
     self.titleLable.text = self.movie[@"title"];
     self.synopsisLable.text = self.movie[@"overview"];

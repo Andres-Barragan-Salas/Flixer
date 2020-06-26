@@ -96,9 +96,23 @@
     NSString *fullposterURLString = [baseURLString stringByAppendingString:posterURLString];
     
     NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
+    NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
     cell.posterView.image = nil; //clearing the previous image before loading a new one
-    [cell.posterView setImageWithURL:posterURL];
-//    cell.textLabel.text = movie[@"title"];
+    [cell.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
+    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+        if (imageResponse) {
+            cell.posterView.alpha = 0.0;
+            cell.posterView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                cell.posterView.alpha = 1.0;
+            }];
+        }
+        else {
+            cell.posterView.image = image;
+        }
+    }
+    failure:NULL];
     
     return cell; 
 }
