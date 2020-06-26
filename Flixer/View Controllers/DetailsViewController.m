@@ -69,7 +69,7 @@
     }
     failure:NULL];
     
-    self.titleLable.text = self.movie[@"title"];
+    self.titleLable.text = [self.movie[@"title"] uppercaseString];
     self.synopsisLable.text = self.movie[@"overview"];
                                
     [self.titleLable sizeToFit];

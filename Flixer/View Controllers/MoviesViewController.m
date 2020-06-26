@@ -161,6 +161,11 @@
     [self.searchBar resignFirstResponder];
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = NO;
+    [self.view endEditing:YES];
+}
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self.view endEditing:YES];
 }
