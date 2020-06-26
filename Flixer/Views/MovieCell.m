@@ -20,7 +20,7 @@
 
     // Configure the view for the selected state
     UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = UIColor.systemGray6Color;
+    backgroundView.backgroundColor = UIColor.systemGray2Color;
     self.selectedBackgroundView = backgroundView;
 }
 

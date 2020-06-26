@@ -88,7 +88,7 @@
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     
     NSDictionary *movie = self.filteredMovies[indexPath.row];
-    cell.titleLable.text = movie[@"title"];
+    cell.titleLable.text = [movie[@"title"] uppercaseString];
     cell.synopsisLable.text = movie[@"overview"];
 
     
@@ -98,19 +98,39 @@
     
     NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
     NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
-    cell.posterView.image = [UIImage imageNamed:@"posterPlaceHolder"]; //clearing the previous image before loading a new one (with a place holder)
     [cell.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         if (imageResponse) {
             cell.posterView.alpha = 0.0;
             cell.posterView.image = image;
             
-            [UIView animateWithDuration:0.3 animations:^{
+            [UIView animateWithDuration:0.5 animations:^{
                 cell.posterView.alpha = 1.0;
             }];
         }
         else {
             cell.posterView.image = image;
+        }
+    }
+    failure:NULL];
+    
+    NSString *backdropURLString = movie[@"backdrop_path"];
+    NSString *fullbackdropURLString = [NSString stringWithFormat:@"%@%@", baseURLString, backdropURLString];
+    
+    NSURL *backdropURL = [NSURL URLWithString:fullbackdropURLString];
+    NSURLRequest *backdropRequest = [NSURLRequest requestWithURL:backdropURL];
+    [cell.backdropView setImageWithURLRequest:backdropRequest placeholderImage:nil
+    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
+        if (imageResponse) {
+            cell.backdropView.alpha = 0.0;
+            cell.backdropView.image = image;
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                cell.backdropView.alpha = 0.3;
+            }];
+        }
+        else {
+            cell.backdropView.image = image;
         }
     }
     failure:NULL];
