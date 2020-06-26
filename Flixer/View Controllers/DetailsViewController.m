@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLable;
+@property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *voteAverageLabel;
 
 @end
 
@@ -70,6 +72,14 @@
     failure:NULL];
     
     self.titleLable.text = [self.movie[@"title"] uppercaseString];
+    self.releaseDateLabel.text = self.movie[@"release_date"];
+    
+    NSNumber *voteAverage = self.movie[@"vote_average"];
+    self.voteAverageLabel.text = [NSString stringWithFormat:@"%@", voteAverage];
+    if ([voteAverage intValue] < 6) {
+        self.voteAverageLabel.textColor = UIColor.redColor;
+    }
+    
     self.synopsisLable.text = self.movie[@"overview"];
                                
     [self.titleLable sizeToFit];
