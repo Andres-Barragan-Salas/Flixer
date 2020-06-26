@@ -142,7 +142,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cec-cX-gLE"/>
                     </view>
-                    <navigationItem key="navigationItem" title="MOVIES" id="nqh-NX-CxQ"/>
+                    <navigationItem key="navigationItem" title="MOVIES" id="nqh-NX-CxQ">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="zaQ-oC-qXj">
+                            <connections>
+                                <segue destination="nkT-EP-K2A" kind="push" id="mQK-34-sF8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="QH8-R4-l6n" id="dQ3-Za-ieX"/>
                         <outlet property="collectionView" destination="Pqw-ky-uhA" id="eQP-vW-bMI"/>
@@ -303,11 +309,11 @@
             </objects>
             <point key="canvasLocation" x="546" y="-629"/>
         </scene>
-        <!--Category-->
+        <!--Categories-->
         <scene sceneID="CO0-ff-N5R">
             <objects>
                 <navigationController id="zk0-IQ-9wi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Category" image="square.grid.2x2" catalog="system" id="lYe-It-tgs"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="square.grid.2x2" catalog="system" id="lYe-It-tgs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="wxf-Qg-3PO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -322,6 +328,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSi-LC-q5A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="958" y="143"/>
+        </scene>
+        <!--CATEGORY SELECTION-->
+        <scene sceneID="84L-li-dg9">
+            <objects>
+                <viewController id="nkT-EP-K2A" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ieg-cZ-yCg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XL2-jX-mu0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nww-3A-QWx">
+                                        <rect key="frame" x="28" y="30" width="100" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Lxw-Gq-QGI">
+                                        <rect key="frame" x="29" y="113.5" width="317" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <segments>
+                                            <segment title="Family"/>
+                                            <segment title="Horror"/>
+                                            <segment title="Action"/>
+                                            <segment title="Romance"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qBc-l2-X8e">
+                                        <rect key="frame" x="43" y="63.5" width="53" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-ze-566">
+                                        <rect key="frame" x="288" y="70.5" width="32" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ant" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aox-xJ-vJE">
+                                        <rect key="frame" x="131" y="65.5" width="35" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-Om-OzD">
+                                        <rect key="frame" x="209" y="68.5" width="37" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="R2K-cL-5KQ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="zDh-am-MMi"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zcg-4y-xEI"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="CATEGORY SELECTION" id="A0f-vM-s9p"/>
+                    <connections>
+                        <outlet property="categoryPicker" destination="Lxw-Gq-QGI" id="Fjg-Ui-gT9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O23-yd-fLM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1808.8" y="888.30584707646187"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="Dqi-g1-KVE">
@@ -350,7 +424,11 @@
         <segue reference="OYE-QL-PJt"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ant" catalog="system" width="107" height="128"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="now_playing_tabbar_item" width="21" height="21"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="play.circle" catalog="system" width="128" height="121"/>
         <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
     </resources>

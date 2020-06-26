@@ -21,6 +21,7 @@
 		2B55884824A53EF800095171 /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B55884724A53EF800095171 /* MovieCollectionCell.m */; };
 		2B55884D24A592FA00095171 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B55884C24A592FA00095171 /* WebKit.framework */; };
 		2B8F6CE424A420630099B11C /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8F6CE324A420630099B11C /* DetailsViewController.m */; };
+		2BBC3E6E24A69DA2005E3EAA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBC3E6D24A69DA2005E3EAA /* SettingsViewController.m */; };
 		2BDB54C124A5942900076998 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDB54C024A5942900076998 /* WebViewController.m */; };
 		40069E2AB5205482D8935F06 /* Pods_Flixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54B1953AE7C6EDE1A66ED5D /* Pods_Flixer.framework */; };
 		6767F795C8F19E4DDCCFEF27 /* Pods_FlixerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D097E9998AB6F0FBC21A97B8 /* Pods_FlixerTests.framework */; };
@@ -73,6 +74,8 @@
 		2B55884C24A592FA00095171 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2B8F6CE224A420630099B11C /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		2B8F6CE324A420630099B11C /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		2BBC3E6C24A69DA2005E3EAA /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		2BBC3E6D24A69DA2005E3EAA /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		2BDB54BF24A5942900076998 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		2BDB54C024A5942900076998 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		2DEDC08F9B0190692DD0A3FA /* Pods-FlixerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlixerTests.release.xcconfig"; path = "Target Support Files/Pods-FlixerTests/Pods-FlixerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				2B55884424A53CF000095171 /* MoviesGridViewController.m */,
 				2BDB54BF24A5942900076998 /* WebViewController.h */,
 				2BDB54C024A5942900076998 /* WebViewController.m */,
+				2BBC3E6C24A69DA2005E3EAA /* SettingsViewController.h */,
+				2BBC3E6D24A69DA2005E3EAA /* SettingsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 				2BDB54C124A5942900076998 /* WebViewController.m in Sources */,
 				2B55884824A53EF800095171 /* MovieCollectionCell.m in Sources */,
 				2B30FFCE24A3CAC80051FC51 /* main.m in Sources */,
+				2BBC3E6E24A69DA2005E3EAA /* SettingsViewController.m in Sources */,
 				2B30FFC024A3CAC60051FC51 /* SceneDelegate.m in Sources */,
 				2B55884524A53CF000095171 /* MoviesGridViewController.m in Sources */,
 			);

@@ -16,11 +16,26 @@
 @property (nonatomic, strong) NSArray *movies;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSNumber *categoryChoice;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation MoviesGridViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSArray *titleByCategory = @[@"FAMILY", @"HORROR", @"ACTION", @"ROMANCE"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.categoryChoice = @([defaults integerForKey:@"category_index"]);
+    
+    self.navigationItem.title = titleByCategory[[self.categoryChoice intValue]];
+    
+    [self.activityIndicator startAnimating];
+    [self fetchMovies];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +63,16 @@
 }
 
 - (void)fetchMovies {
-        NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
+    NSArray* categoryId = @[@(508439), @(521531), @(603), @(522098)];
+    
+    int categorySelection = 0;
+    if (categoryId[[self.categoryChoice intValue]]) {
+        categorySelection = [self.categoryChoice intValue];
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1", categoryId[categorySelection]];
+    
+        NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
         NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -121,18 +145,20 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    MovieCollectionCell *tappedCell = sender;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        tappedCell.posterView.alpha = 0.5;
-        tappedCell.posterView.alpha = 1.0;
-    }];
-    
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.movies[indexPath.item];
-    
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.movie = movie;
+    if ([sender isKindOfClass:[MovieCollectionCell class]]) {
+        MovieCollectionCell *tappedCell = sender;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            tappedCell.posterView.alpha = 0.5;
+            tappedCell.posterView.alpha = 1.0;
+        }];
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+        NSDictionary *movie = self.movies[indexPath.item];
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.movie = movie;
+    }
 }
 
 @end
