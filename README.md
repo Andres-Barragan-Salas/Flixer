@@ -2,7 +2,7 @@
 
 **Flixer** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **21** hours spent in total
 
 ## User Stories
 
@@ -29,7 +29,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Details view displays the release date and vote (with conditional color) average of the movie.
+- [x] Details view displays the release date and vote average (with conditional color) of the movie.
 - [x] User is presented with the trailer (YouTube) when tapping on the backdrop from the details view.
 - [x] The grid view can display different sets of movies depending on the selected category (selected from a "settings view").
 
@@ -48,7 +48,7 @@ Here's a walkthrough of implemented user stories:
 <img src='http://g.recordit.co/G0Q0NLjQVF.gif' title='Video4' width='' alt='Video4' />
 <img src='http://g.recordit.co/vga7D9dVu8.gif' title='Video5' width='' alt='Video5' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](https://recordit.co/).
 
 ## Notes
 
