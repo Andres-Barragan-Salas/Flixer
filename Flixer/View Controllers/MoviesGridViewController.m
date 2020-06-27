@@ -11,6 +11,8 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 
+#define ANIMATION_DURATION ((double) 0.3)
+
 @interface MoviesGridViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray *movies;
@@ -125,7 +127,7 @@
             cell.posterView.alpha = 0.0;
             cell.posterView.image = image;
             
-            [UIView animateWithDuration:0.3 animations:^{
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
                 cell.posterView.alpha = 1.0;
             }];
         }
@@ -148,7 +150,7 @@
     if ([sender isKindOfClass:[MovieCollectionCell class]]) {
         MovieCollectionCell *tappedCell = sender;
         
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
             tappedCell.posterView.alpha = 0.5;
             tappedCell.posterView.alpha = 1.0;
         }];

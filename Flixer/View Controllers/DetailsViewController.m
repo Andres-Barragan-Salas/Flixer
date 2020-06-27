@@ -10,12 +10,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "WebViewController.h"
 
+#define ANIMATION_DURATION ((double) 0.5)
+
 @interface DetailsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backdropView;
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLable;
-@property (weak, nonatomic) IBOutlet UILabel *synopsisLable;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *voteAverageLabel;
 
@@ -40,7 +42,7 @@
             self.posterView.alpha = 0.0;
             self.posterView.image = image;
             
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
                 self.posterView.alpha = 1.0;
             }];
         }
@@ -61,7 +63,7 @@
             self.backdropView.alpha = 0.0;
             self.backdropView.image = image;
             
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
                 self.backdropView.alpha = 1.0;
             }];
         }
@@ -71,7 +73,7 @@
     }
     failure:NULL];
     
-    self.titleLable.text = [self.movie[@"title"] uppercaseString];
+    self.titleLabel.text = [self.movie[@"title"] uppercaseString];
     self.releaseDateLabel.text = self.movie[@"release_date"];
     
     NSNumber *voteAverage = self.movie[@"vote_average"];
@@ -80,10 +82,10 @@
         self.voteAverageLabel.textColor = UIColor.redColor;
     }
     
-    self.synopsisLable.text = self.movie[@"overview"];
+    self.synopsisLabel.text = self.movie[@"overview"];
                                
-    [self.titleLable sizeToFit];
-    [self.synopsisLable sizeToFit];
+    [self.titleLabel sizeToFit];
+    [self.synopsisLabel sizeToFit];
     
 }
 

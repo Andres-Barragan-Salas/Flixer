@@ -11,7 +11,7 @@
         <!--MOVIES-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MoviesViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MoviesTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,8 +66,8 @@
                                         <connections>
                                             <outlet property="backdropView" destination="Tci-0p-wpU" id="F8P-V1-Ec7"/>
                                             <outlet property="posterView" destination="S8e-D6-yVY" id="ifk-bX-txH"/>
-                                            <outlet property="synopsisLable" destination="Bqr-Mg-Oot" id="4V6-t1-Ojb"/>
-                                            <outlet property="titleLable" destination="sKS-qt-PrL" id="Qf5-68-Bby"/>
+                                            <outlet property="synopsisLabel" destination="Bqr-Mg-Oot" id="pNY-6x-8oM"/>
+                                            <outlet property="titleLabel" destination="sKS-qt-PrL" id="q8n-hq-dd2"/>
                                             <segue destination="IwP-33-D0F" kind="show" id="PFq-eP-p6d"/>
                                         </connections>
                                     </tableViewCell>
@@ -233,8 +233,8 @@
                         <outlet property="backdropView" destination="EQJ-LG-GGi" id="tJG-Y7-xW1"/>
                         <outlet property="posterView" destination="du0-G2-Xj1" id="nL6-nH-cKn"/>
                         <outlet property="releaseDateLabel" destination="ceR-Jl-sLb" id="WaF-29-ZmG"/>
-                        <outlet property="synopsisLable" destination="ZcR-S0-uqh" id="LLF-hg-mdA"/>
-                        <outlet property="titleLable" destination="NlF-kC-oNC" id="llL-Gc-cCj"/>
+                        <outlet property="synopsisLabel" destination="ZcR-S0-uqh" id="LLF-hg-mdA"/>
+                        <outlet property="titleLabel" destination="NlF-kC-oNC" id="llL-Gc-cCj"/>
                         <outlet property="voteAverageLabel" destination="6Hi-8t-zXK" id="U2Z-ee-ZwB"/>
                     </connections>
                 </viewController>
@@ -421,7 +421,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OYE-QL-PJt"/>
+        <segue reference="PFq-eP-p6d"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ant" catalog="system" width="107" height="128"/>
