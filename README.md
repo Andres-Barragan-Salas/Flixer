@@ -2,7 +2,7 @@
 
 **Flixer** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **21** hours spent in total
 
 ## User Stories
 
@@ -29,24 +29,30 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] User is presented with the trailer (YouTube) when tapping on the backdrop.
+- [x] Details view displays the release date and vote average (with conditional color) of the movie.
+- [x] User is presented with the trailer (YouTube) when tapping on the backdrop from the details view.
+- [x] The grid view can display different sets of movies depending on the selected category (selected from a "settings view").
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Implementing the search bar inside the collection view.
-2.
+2. Using Web View/WebKit View properly.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/gDzPvRv9Ez.gif' title='Video1' width='' alt='Video1' />
+<img src='http://g.recordit.co/LCpItkTga7.gif' title='Video2' width='' alt='Video2' />
+<img src='http://g.recordit.co/mz656BXTsq.gif' title='Video3' width='' alt='Video3' />
+<img src='http://g.recordit.co/G0Q0NLjQVF.gif' title='Video4' width='' alt='Video4' />
+<img src='http://g.recordit.co/vga7D9dVu8.gif' title='Video5' width='' alt='Video5' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](https://recordit.co/).
 
 ## Notes
 
-At times XCode doesn't detect the custom class set for a View Controller, restaring XCode seems to work so far.
+At times XCode doesn't detect the custom class set for a View Controller, restaring XCode seems to work so far. For some reason trying to load a low resolution image before the complete one was resulting in not loading either. "stringByAppendingString" method throws an error (*"unrecognised selector sent to instance"*) at times which "stringWithFormat" doesn't. 
 
 ## Credits
 
