@@ -9,6 +9,7 @@
 #import "MoviesGridViewController.h"
 #import "MovieCollectionCell.h"
 #import "DetailsViewController.h"
+#import "MovieApiManager.h"
 #import "UIImageView+AFNetworking.h"
 
 #define ANIMATION_DURATION ((double) 0.3)
@@ -65,77 +66,42 @@
 }
 
 - (void)fetchMovies {
-    NSArray* categoryId = @[@(508439), @(521531), @(603), @(522098)];
-    
-    int categorySelection = 0;
-    if (categoryId[[self.categoryChoice intValue]]) {
-        categorySelection = [self.categoryChoice intValue];
-    }
-    
-    NSString *urlString = [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1", categoryId[categorySelection]];
-    
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-               if (error != nil) {
-                   NSLog(@"%@", [error localizedDescription]);
-                   
-                   //Error while fetching content
-                   UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
-                          message:@"Please check your Internet connection."
-                   preferredStyle:(UIAlertControllerStyleAlert)];
-                   
-                   UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
-                                                                      style:UIAlertActionStyleDefault
-                                                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                                            [self fetchMovies];
-                                                                    }];
-                   [alert addAction:tryAgainAction];
-                   
-                   [self presentViewController:alert animated:YES completion:^{}];
-               }
-               else {
-                   NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                   
-                   self.movies = dataDictionary[@"results"];
-                   
-                   [self.collectionView reloadData];
-               }
+    MovieApiManager *manager = [MovieApiManager new];
+    [manager fetchCategory:self.categoryChoice onComplete:^(NSArray *movies, NSError *error) {
+            if (error){
+                NSLog(@"%@", [error localizedDescription]);
+                
+                //Error while fetching content
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
+                       message:@"Please check your Internet connection."
+                preferredStyle:(UIAlertControllerStyleAlert)];
+                
+                UIAlertAction *tryAgainAction = [UIAlertAction actionWithTitle:@"Try Again"
+                                                                   style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                                         [self fetchMovies];
+                                                                 }];
+                [alert addAction:tryAgainAction];
+                
+                [self presentViewController:alert animated:YES completion:^{}];
+            }
+            else {
+                self.movies = movies;
+                [self.collectionView reloadData];
+            }
             
             [self.activityIndicator stopAnimating];
             [self.refreshControl endRefreshing];
-           }];
-        [task resume];
+        }];
 }
+
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
     
-    NSDictionary *movie = self.movies[indexPath.item];
+    Movie *movie = self.movies[indexPath.item];
     
-    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString *posterURLString = movie[@"poster_path"];
-    NSString *fullposterURLString = [baseURLString stringByAppendingString:posterURLString];
-    
-    NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
-    NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
-    cell.posterView.image = [UIImage imageNamed:@"posterPlaceHolder"];
-    [cell.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
-    success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
-        if (imageResponse) {
-            cell.posterView.alpha = 0.0;
-            cell.posterView.image = image;
-            
-            [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-                cell.posterView.alpha = 1.0;
-            }];
-        }
-        else {
-            cell.posterView.image = image;
-        }
-    }
-    failure:NULL];
+    [cell setMovie:movie];
     
     return cell;
 }
@@ -156,7 +122,7 @@
         }];
         
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
-        NSDictionary *movie = self.movies[indexPath.item];
+        Movie *movie = self.movies[indexPath.item];
         
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.movie = movie;

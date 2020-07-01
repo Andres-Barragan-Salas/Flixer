@@ -30,12 +30,7 @@
     
     self.posterView.image = [UIImage imageNamed:@"posterPlaceHolder"];
     
-    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString *posterURLString = self.movie[@"poster_path"];
-    NSString *fullposterURLString = [baseURLString stringByAppendingString:posterURLString];
-    
-    NSURL *posterURL = [NSURL URLWithString:fullposterURLString];
-    NSURLRequest *posterRequest = [NSURLRequest requestWithURL:posterURL];
+    NSURLRequest *posterRequest = [NSURLRequest requestWithURL:self.movie.posterURL];
     [self.posterView setImageWithURLRequest:posterRequest placeholderImage:nil
     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         if (imageResponse) {
@@ -52,11 +47,7 @@
     }
     failure:NULL];
     
-    NSString *backdropURLString = self.movie[@"backdrop_path"];
-    NSString *fullbackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
-    
-    NSURL *backdropURL = [NSURL URLWithString:fullbackdropURLString];
-    NSURLRequest *backdropRequest = [NSURLRequest requestWithURL:backdropURL];
+    NSURLRequest *backdropRequest = [NSURLRequest requestWithURL:self.movie.backdropURL];
     [self.backdropView setImageWithURLRequest:backdropRequest placeholderImage:nil
     success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
         if (imageResponse) {
@@ -73,16 +64,16 @@
     }
     failure:NULL];
     
-    self.titleLabel.text = [self.movie[@"title"] uppercaseString];
-    self.releaseDateLabel.text = self.movie[@"release_date"];
+    self.titleLabel.text = [self.movie.title uppercaseString];
+    self.releaseDateLabel.text = self.movie.releaseDate;
     
-    NSNumber *voteAverage = self.movie[@"vote_average"];
+    NSNumber *voteAverage = self.movie.voteAverage;
     self.voteAverageLabel.text = [NSString stringWithFormat:@"%@", voteAverage];
     if ([voteAverage intValue] < 6) {
         self.voteAverageLabel.textColor = UIColor.redColor;
     }
     
-    self.synopsisLabel.text = self.movie[@"overview"];
+    self.synopsisLabel.text = self.movie.overview;
                                
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
@@ -94,7 +85,7 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     WebViewController *trailerViewController = [segue destinationViewController];
-    trailerViewController.movieId = self.movie[@"id"];
+    trailerViewController.movieId = self.movie.idStr;
 }
 
 @end
